@@ -9,12 +9,16 @@ import { CreateUserDto } from '../../../utils/api/types';
 import { UserApi } from '../../../utils/api';
 import { setCookie } from 'nookies';
 import { Alert } from '@mui/material';
+import { useAppDispatch } from '../../../redux/hooks';
+import { setUserData } from '../../../redux/slices/user';
 
 interface RegisterFormProps {
   onOpenLogin: () => void;
 }
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({ onOpenLogin }) => {
+  const dispatch = useAppDispatch();
+
   const [errorMessage, setErrorMessage] = React.useState('');
 
   const form = useForm({
@@ -32,6 +36,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onOpenLogin }) => {
         path: '/',
       });
       setErrorMessage('');
+      dispatch(setUserData(data));
     } catch (error: any) {
       console.warn('Ошибка при регистрации', error);
       if (error.response) {
@@ -48,11 +53,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onOpenLogin }) => {
         <FormField name="lastName" label="Фамилия" type="text" />
         <FormField name="email" label="Email" type="email" />
         <FormField name="password" label="Пароль" type="password" />
-        {errorMessage && (
-          <Alert severity="error">
-            {errorMessage}
-          </Alert>
-        )}
+        {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
         <div className={styles.actions}>
           <div className={styles.action}>
             Есть аккаунт?

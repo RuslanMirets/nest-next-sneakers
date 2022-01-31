@@ -8,9 +8,11 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { DrawerCart } from '../Drawer';
 import { AuthDialog } from '../AuthDialog';
+import { useAppSelector } from '../../redux/hooks';
+import { selectUserData } from '../../redux/slices/user';
 
 export const Header: React.FC = () => {
-  const isAuth = false;
+  const userData = useAppSelector(selectUserData);
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -32,7 +34,7 @@ export const Header: React.FC = () => {
             </a>
           </Link>
           <ul className={styles.actions}>
-            {isAuth ? (
+            {userData ? (
               <>
                 <li onClick={toggleDrawer}>
                   <LocalMallOutlinedIcon />

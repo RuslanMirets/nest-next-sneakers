@@ -3,6 +3,8 @@ import { Alert } from '@mui/material';
 import { setCookie } from 'nookies';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useAppDispatch } from '../../../redux/hooks';
+import { setUserData } from '../../../redux/slices/user';
 import { UserApi } from '../../../utils/api';
 import { LoginDto } from '../../../utils/api/types';
 import { LoginFormSchema } from '../../../utils/validations';
@@ -15,6 +17,8 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onOpenRegister }) => {
+  const dispatch = useAppDispatch();
+
   const [errorMessage, setErrorMessage] = React.useState('');
 
   const form = useForm({
@@ -31,6 +35,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onOpenRegister }) => {
         path: '/',
       });
       setErrorMessage('');
+      dispatch(setUserData(data));
     } catch (error: any) {
       console.warn('Login error', error);
       if (error.response) {
