@@ -1,0 +1,28 @@
+.button {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  background-color: #9dd558;
+  border-radius: 18px;
+  padding: 18px 42px;
+  position: relative;
+  transition: background-color 0.3s;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 14px;
+    right: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url('/static/arrow-right.svg');
+    transition: right 0.3s;
+  }
+  &:hover {
+    background-color: darken($color: #9dd558, $amount: 5);
+    &::after {
+      right: 95px;
+    }
+  }
+}

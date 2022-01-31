@@ -1,0 +1,73 @@
+.paper {
+  width: 500px;
+  .body {
+    padding: 32px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    .head {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h2 {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+      }
+    }
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-grow: 1;
+      overflow-y: auto;
+      .item {
+        padding: 30px 20px;
+        background: #ffffff;
+        border: 1px solid #f3f3f3;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        img {
+          width: 100px;
+          height: 90px;
+          transform: translateY(-10px);
+          flex-shrink: 0;
+          object-fit: contain;
+        }
+        .name {
+          font-size: 16px;
+          line-height: 17px;
+          margin-bottom: 8px;
+        }
+        .price {
+          font-weight: 700;
+          font-size: 15px;
+          line-height: 17px;
+        }
+      }
+    }
+    .total {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 24px;
+      div {
+        flex-grow: 1;
+        height: 1px;
+        border-bottom: 1px dashed #dfdfdf;
+        position: relative;
+        top: -4px;
+        margin: 0 7px;
+      }
+    }
+    .foot {
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

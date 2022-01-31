@@ -6,9 +6,15 @@ import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { DrawerCart } from '../Drawer';
 
 export const Header: React.FC = () => {
   const isAuth = true;
+
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
 
   return (
     <header className={styles.header}>
@@ -22,7 +28,7 @@ export const Header: React.FC = () => {
           <ul className={styles.actions}>
             {isAuth ? (
               <>
-                <li>
+                <li onClick={toggleDrawer}>
                   <LocalMallOutlinedIcon />
                   1205 руб.
                 </li>
@@ -52,6 +58,7 @@ export const Header: React.FC = () => {
           </ul>
         </div>
       </div>
+      <DrawerCart open={drawerOpen} onClose={toggleDrawer} />
     </header>
   );
 };

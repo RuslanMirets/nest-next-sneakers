@@ -28,7 +28,13 @@ a {
 li {
   list-style: none;
 }
-
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  cursor: pointer;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
