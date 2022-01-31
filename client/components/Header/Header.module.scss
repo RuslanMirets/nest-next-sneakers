@@ -1,0 +1,46 @@
+.header {
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 40px;
+
+  .body {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    li {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 17px;
+      color: #5c5c5c;
+      cursor: pointer;
+      transition: color 0.3s;
+      a {
+        display: flex;
+      }
+      svg {
+        color: #9b9b9b;
+        transition: color 0.3s;
+      }
+      &:first-child {
+        margin-right: 10px;
+        svg {
+          margin-right: 5px;
+        }
+      }
+      &:hover {
+        color: #222222;
+        svg {
+          color: #222222;
+        }
+      }
+    }
+  }
+}
