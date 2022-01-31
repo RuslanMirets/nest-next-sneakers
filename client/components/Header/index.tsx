@@ -7,13 +7,19 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { DrawerCart } from '../Drawer';
+import { AuthDialog } from '../AuthDialog';
 
 export const Header: React.FC = () => {
-  const isAuth = true;
+  const isAuth = false;
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
+  };
+
+  const [authDialogOpen, setAuthDialogOpen] = React.useState(false);
+  const toggleAuthDialog = () => {
+    setAuthDialogOpen(!authDialogOpen);
   };
 
   return (
@@ -52,13 +58,16 @@ export const Header: React.FC = () => {
               </>
             ) : (
               <>
-                <LoginOutlinedIcon />
+                <li onClick={toggleAuthDialog}>
+                  <LoginOutlinedIcon />
+                </li>
               </>
             )}
           </ul>
         </div>
       </div>
       <DrawerCart open={drawerOpen} onClose={toggleDrawer} />
+      <AuthDialog open={authDialogOpen} onClose={toggleAuthDialog} />
     </header>
   );
 };
