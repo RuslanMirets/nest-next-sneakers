@@ -1,4 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 import { userReducer } from './slices/user';
 
 export function makeStore() {
@@ -11,12 +12,15 @@ export function makeStore() {
 
 export const store = makeStore();
 
-export type RootStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<RootStore['getState']>;
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore['getState']>;
 export type AppDispatch = typeof store.dispatch;
+
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
-  RootState,
+  AppState,
   unknown,
   Action<string>
 >;
+
+export const wrapper = createWrapper<AppStore>(makeStore, {debug: true});
