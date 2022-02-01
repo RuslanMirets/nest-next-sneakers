@@ -1,9 +1,5 @@
-import type { GetServerSideProps, NextPage } from 'next';
-import { parseCookies } from 'nookies';
+import type { NextPage } from 'next';
 import { MainLayout } from '../layouts/MainLayout';
-import { setUserData } from '../redux/slices/user';
-import { wrapper } from '../redux/store';
-import { UserApi } from '../utils/api';
 
 const Home: NextPage = () => {
   return (
@@ -14,19 +10,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  (store) => async (ctx) => {
-    try {
-      const { authToken } = parseCookies(ctx);
-      const userData = await UserApi.getProfile(authToken);
-
-      store.dispatch(setUserData(userData));
-
-      return { props: {} };
-    } catch (error) {
-      console.log(error);
-      return { props: {} };
-    }
-  },
-);

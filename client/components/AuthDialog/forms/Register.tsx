@@ -6,7 +6,7 @@ import { Button } from '../../buttons/ButtonBlue';
 import { FormField } from '../../FormField';
 import styles from './Forms.module.scss';
 import { CreateUserDto } from '../../../utils/api/types';
-import { UserApi } from '../../../utils/api';
+import { UserApi } from '../../../utils/api/user';
 import { setCookie } from 'nookies';
 import { Alert } from '@mui/material';
 import { useAppDispatch } from '../../../redux/hooks';

@@ -8,11 +8,13 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { DrawerCart } from '../Drawer';
 import { AuthDialog } from '../AuthDialog';
-import { useAppSelector } from '../../redux/hooks';
-import { selectUserData } from '../../redux/slices/user';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { selectUserData, setUserData } from '../../redux/slices/user';
+import { destroyCookie } from 'nookies';
 
 export const Header: React.FC = () => {
   const userData = useAppSelector(selectUserData);
+  const dispatch = useAppDispatch();
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const toggleDrawer = () => {
@@ -22,6 +24,18 @@ export const Header: React.FC = () => {
   const [authDialogOpen, setAuthDialogOpen] = React.useState(false);
   const toggleAuthDialog = () => {
     setAuthDialogOpen(!authDialogOpen);
+  };
+
+  React.useEffect(() => {
+    if (authDialogOpen && userData) {
+      setAuthDialogOpen(false);
+    }
+  }, [authDialogOpen, userData]);
+
+  const logout = (data: any) => {
+    destroyCookie(null, 'authToken', null);
+    data = null;
+    dispatch(setUserData(data));
   };
 
   return (
@@ -54,7 +68,7 @@ export const Header: React.FC = () => {
                     </a>
                   </Link>
                 </li>
-                <li>
+                <li onClick={logout}>
                   <LogoutOutlinedIcon />
                 </li>
               </>

@@ -5,7 +5,7 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../../redux/hooks';
 import { setUserData } from '../../../redux/slices/user';
-import { UserApi } from '../../../utils/api';
+import { UserApi } from '../../../utils/api/user';
 import { LoginDto } from '../../../utils/api/types';
 import { LoginFormSchema } from '../../../utils/validations';
 import { Button } from '../../buttons/ButtonBlue';
